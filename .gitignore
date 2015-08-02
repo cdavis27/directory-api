@@ -1,6 +1,7 @@
 public/lib
 bower_components
 node_modules
+example.bin
 
 *.swp
 .DS_Store
