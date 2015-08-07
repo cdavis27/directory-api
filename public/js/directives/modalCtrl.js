@@ -1,15 +1,24 @@
 'use strict';
 
 angular.module('directoryApp.directives')
-.controller('ModalCtrl', ['$scope', '$modalInstance',
-function ($scope, $modalInstance) {
+.controller('ModalCtrl', ['$scope', '$modalInstance', '$http',
+function ($scope, $modalInstance, $http) {
 
   $scope.school = undefined;
 
-  console.log("here");
-
   $scope.createSchool = function(school) {
-  // $http.POST('/api/schools', )
+  $http.post('/api/schools', school).
+    then(function(res) {
+      console.log('added school success');
+    }, function(res) {
+      console.log('added school fail');
+    });
+
+    $modalInstance.close();
   };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  }
 
 }]);

@@ -60,7 +60,7 @@
 
             <!-- begin Schools -->
             <div class="container">
-                <div class="school-card col-xs-12 col-lg-3 col-med-6">
+                <div class="school-card col-xs-12 col-lg-3 col-med-6" ng-repeat="school in schools">
                     <ul class="icons">
                         <li>
                             <a href="/edit">
@@ -73,34 +73,23 @@
                             </a>
                         </li>
                     </ul>
-
-                    <h2 class="school-name">Mountain View</h2>
-
+                    <h2 class="school-name"> {{ school.name }} </h2>
                     <span class="address school-icon">
-                        <p class="icon-text">848 W 260 S Orem, UT 84058</p>
+                        <p class="icon-text"> {{ school.street }} </p>
                     </span>
                     <span class="phone school-icon">
-                        <p class="icon-text">(801) 475-2934</p>
+                        <p class="icon-text"> {{ school.phone }}</p>
                     </span>
                     <span class="enrollment school-icon">
-                        <p class="icon-text">3000 Students</p>
+                        <p class="icon-text">{{ school.enrollment }} </p>
                     </span>
-
-                    <div class="contact">
-                         <img src="assets/monster.png" class="contact-img img-circle img-responsive col-lg-4">
-                         <div class="contact-info col-lg-8">
-                            <p class="contact-info">Randy Lusk</p>
-                            <p class="contact-info">Principal</p>
+                    <div class="contact" ng-repeat="contact in school.contacts">
+                         <img src="assets/monster.png" class="contact-img img-circle img-responsive">
+                         <div class="contact-info">
+                            <p>Randy Lusk</p>
+                            <p>Principal</p>
                         </div>
                     </div>
-                     <div class="contact">
-                        <img src="assets/monster.png" class="contact-img img-circle img-responsive col-lg-4">
-                        <div class="contact-info col-lg-8">
-                            <p class="contact-info">Randy Lusk</p>
-                            <p class="contact-info">Principal</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <!-- end Schools -->
