@@ -12,7 +12,7 @@ function ($scope, $modalInstance, $http) {
   angular.copy(school, mySchool);
 
   // Validation
-  mySchool.enrollment = parseInt(mySchool.enrollment);
+  mySchool.enrollment = ~~parseInt(mySchool.enrollment);
 
   $http.post('/api/schools', mySchool).
     then(function(res) {
