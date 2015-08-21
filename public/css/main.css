@@ -135,3 +135,11 @@ p.icon-text {
   color: red;
   line-height: 2em;
 }
+
+.hidden-icon {
+  opacity: .25;
+}
+
+.hidden-icon:hover {
+  opacity: 1;
+}

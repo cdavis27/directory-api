@@ -8,10 +8,10 @@
     <div class="school-card col-xs-12 col-lg-3 col-med-6" ng-repeat="school in schools">
         <ul class="icons">
             <li>
-                <span class="glyphicon glyphicon-pencil white clickable" ng-click="edit(school)"></span>
+                <span class="hidden-icon glyphicon glyphicon-pencil white clickable" ng-click="edit(school)"></span>
             </li>
             <li>
-                <span class="glyphicon glyphicon-trash white clickable" ng-click="delete(school)"></span>
+                <span class="hidden-icon glyphicon glyphicon-trash white clickable" ng-click="delete(school)"></span>
             </li>
         </ul>
         <h2 class="school-name"> {{ school.name }} </h2>
