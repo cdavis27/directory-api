@@ -32,6 +32,7 @@ function ($modal,   $q) {
 function ($scope,  $modalInstance,  $http) {
 
     $scope.user = {};
+    $scope.error = undefined;
 
     $scope.login = function(user) {
         // try a login
@@ -43,6 +44,7 @@ function ($scope,  $modalInstance,  $http) {
             $modalInstance.close(response.data.token)
         }, function(err) {
             console.error('Uh oh!', err);
+            $scope.error = err;
         });
     };
 

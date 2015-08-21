@@ -13,8 +13,8 @@ function ($modal,   $q) {
             templateUrl: 'js/modals/school/modal.html',
             controller: 'SchoolModalCtrl',
             backdrop: 'static',
-            keyboard: false,
-            windowClass: 'login-modal',
+            keyboard: true,
+            windowClass: 'school-modal',
             resolve: {
                 currentSchool: function() { return school }
             }

@@ -125,5 +125,13 @@ p.icon-text {
   cursor: pointer;
 }
 
+.login-error {
+  background-color: rgba(255, 0, 0, 0.06);
+}
 
-
+.login-error p {
+  font-size: 1.2em;
+  text-align: center;
+  color: red;
+  line-height: 2em;
+}
