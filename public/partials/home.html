@@ -1,0 +1,38 @@
+<!-- begin top bar -->
+<div class="container">
+    <button type="button" class="add-btn btn btn-lg" ng-click="create()">+</button>
+</div>
+<!-- end top bar -->
+
+<div class="container">
+    <div class="school-card col-xs-12 col-lg-3 col-med-6" ng-repeat="school in schools">
+        <ul class="icons">
+            <li>
+                <span class="glyphicon glyphicon-pencil white clickable" ng-click="edit(school)"></span>
+            </li>
+            <li>
+                <span class="glyphicon glyphicon-trash white clickable" ng-click="delete(school)"></span>
+            </li>
+        </ul>
+        <h2 class="school-name"> {{ school.name }} </h2>
+        <span class="address school-icon">
+            <p class="icon-text">
+                <p>{{ school.address.street }}</p>
+                <p>{{ school.address.city }}, {{ school.address.state }} {{ school.address.zip }}</p>
+            </p>
+        </span>
+        <span class="phone school-icon">
+            <p class="icon-text"> {{ school.phone }}</p>
+        </span>
+        <span class="enrollment school-icon">
+            <p class="icon-text">{{ school.enrollment }} </p>
+        </span>
+        <div class="contact" ng-repeat="contact in school.contacts">
+             <img src="assets/monster.png" class="contact-img img-circle img-responsive">
+             <div class="contact-info">
+                <p>{{ contact.name }}</p>
+                <p>{{ contact.position }}</p>
+            </div>
+        </div>
+    </div>
+</div>

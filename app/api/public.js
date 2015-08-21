@@ -10,23 +10,23 @@ var User       = require('../models/User');
 
 router.post('/authenticate', function(req, res) {
     User.findOne({
-        name: req.body.name
+        name: req.body.username
     }, function(err, user) {
         if (err) {
             if (err.name === 'TokenExpiredError') {
-                res.json({
+                res.status(401).json({
                     success: false,
                     message: 'Token expired.'
                 })
                 return;
             } else if (err.name === 'JsonWebTokenError') {
-                res.json({
+                res.status(401).json({
                     success: false,
                     message: err.message
                 })
                 return;
             } else {
-                res.json({
+                res.status(401).json({
                     success: false,
                     message: 'Unspecified error.'
                 })
@@ -35,7 +35,7 @@ router.post('/authenticate', function(req, res) {
         }
 
         if (!user) {
-            res.json({
+            res.status(401).json({
                 success: false,
                 message: 'Authentication failed. User not found.'
             });
@@ -44,14 +44,14 @@ router.post('/authenticate', function(req, res) {
 
         user.comparePassword(req.body.password, function(err, isMatch) {
             if (err) {
-                return res.json({
+                return res.status(401).json({
                     success: false,
                     message: err
                 });
             }
 
             if (!isMatch) {
-                return res.json({
+                return res.status(401).json({
                     success: false,
                     message: 'Authentication failed. Wrong password'
                 })
@@ -73,7 +73,7 @@ router.post('/authenticate', function(req, res) {
 });
 
 router.get('/setup', function(req, res) {
-    res.json({ success: false });
+    return res.json({ success: false });
 
     var parker = new User({
         name: 'rwlokc',

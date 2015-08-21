@@ -4,8 +4,8 @@ var bcrypt   = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-    name: String,
-    password: String,
+    name: { type: String, required: true, index: { unique: true } },
+    password: { type: String, required: true },
     admin: Boolean
 });
 

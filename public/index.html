@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
     <head>
         <meta name="directory" content="width=device-width, initial-scale=1">
         
@@ -14,92 +15,27 @@
         <script src="/lib/sweetalert/dist/sweetalert.min.js"></script>
         <script src="/lib/angular-sweetalert/SweetAlert.min.js"></script>
         <script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="/lib/angular-route/angular-route.min.js"></script>
 
         <!-- my files -->
         <link href="css/main.css" rel="stylesheet" type="text/css">
         <script src="js/app.js"></script>
+        <script src="js/modals/school/modalCtrl.js"></script>
+        <script src="js/modals/login/modalCtrl.js"></script>
+        <script src="js/services/user.js"></script>
+        <script src="js/services/school.js"></script>
+        <script src="js/directives/directives.js"></script>
         <script src="js/controllers/mainCtrl.js"></script>
-        <script src="js/directives/modalCtrl.js"></script>
 
         </head>
-        <body ng-app="directoryApp" ng-controller="MainCtrl">
+        <body ng-app="directoryApp">
             <!-- begin header -->
             <div class="container-fluid header">
                 <h1 class="container header-text">School Directory</h1>
             </div>
             <!-- end header -->
 
-            <!-- begin top bar -->
-            <div class="container">
-                <button type="button" class="add-btn btn btn-lg" ng-click="openModal()">+</button>
-            </div>
-            <!-- end top bar -->
+            <div ng-view></div>
 
-            <div class="container" >
-        <div class="col-xs-12 col-lg-12"> 
-            <div ng-repeat="project in projects" class="card">
-                <div class="card-body">
-                    <ul class="icons">
-                        <li>
-                            <a href="/flag">
-                                <span class="glyphicon glyphicon-share-alt white"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/delete">
-                                <span class="glyphicon glyphicon-trash white"></span>
-                            </a>
-                        </li>
-                    <!-- image -->
-                </div>
-                <div ng-click="goToProject(project)" class="card-footer">
-                    <h3 class="title">{{ project.name }}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-            <!-- begin Schools -->
-            <div class="container">
-                <div class="school-card col-xs-12 col-lg-3 col-med-6" ng-repeat="school in schools">
-                    <ul class="icons">
-                        <li>
-                            <span class="glyphicon glyphicon-pencil white clickable" ng-click="edit(school)"></span>
-                        </li>
-                        <li>
-                            <span class="glyphicon glyphicon-trash white clickable" ng-click="delete(school)"></span>
-                        </li>
-                    </ul>
-                    <h2 class="school-name"> {{ school.name }} </h2>
-                    <span class="address school-icon">
-                        <p class="icon-text">
-                            <p>{{ school.address.street }}</p>
-                            <p>{{ school.address.city }}, {{ school.address.state }} {{ school.address.zip }}</p>
-                        </p>
-                    </span>
-                    <span class="phone school-icon">
-                        <p class="icon-text"> {{ school.phone }}</p>
-                    </span>
-                    <span class="enrollment school-icon">
-                        <p class="icon-text">{{ school.enrollment }} </p>
-                    </span>
-                    <div class="contact" ng-repeat="contact in school.contacts">
-                         <img src="assets/monster.png" class="contact-img img-circle img-responsive">
-                         <div class="contact-info">
-                            <p>{{ contact.name }}</p>
-                            <p>{{ contact.position }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end Schools -->
-
-            <!-- begin footer -->
-            <div class="container-fluid footer">
-                <div class="container">
-                    <span class="author"></span>
-                </div>
-            </div>
-            <!-- end footer -->
         </body>
 </html>

@@ -20,7 +20,7 @@ module.exports = function() {
 
         jwt.verify(token, jwtSecret, function(err, decoded) {
             if (err) {
-                return res.json({
+                return res.status(403).json({
                     success: false,
                     message: 'Failed to authenticate token.'
                 })

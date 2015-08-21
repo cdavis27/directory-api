@@ -2,47 +2,30 @@
 
 angular.module('directoryApp.controllers')
 .controller('MainCtrl',
-[        '$scope','$modal','$http','SweetAlert',
-function ($scope,  $modal,  $http,  SweetAlert) {
+[        '$scope','$http','SweetAlert','User','School','SchoolModal',
+function ($scope,  $http,  SweetAlert,  User,  School,  SchoolModal) {
 
   $scope.schools = [];
 
-  $http.get('/api/schools').
-  then(function(res) {
-    $scope.schools = res.data;
-    console.log(res);
-
-  }, function(res) {
-    console.log('got schools fail');
+  User.onLogin(function() {
+    School.getList().then(function(schools) {
+      $scope.schools = schools;
+    });
   });
 
-  $scope.openModal = function () {
-    var modalInstance = $modal.open ({
-      templateUrl: 'js/directives/modal.html',
-      controller: 'ModalCtrl',
-      resolve: {
-        school: function() { return undefined; }
-      }
-    });
+  User.showLogin();
 
-    modalInstance.result.then(function (result) {
-         console.log(result.data);
-         $scope.schools.push(result.data);
+  $scope.create = function () {
+    SchoolModal.show().then(function(school) {
+      console.log('new', school);
+      $scope.schools.push(school);
     });
   };
 
   $scope.edit = function(school) {
-    var modalInstance = $modal.open ({
-      templateUrl: 'js/directives/modal.html',
-      controller: 'ModalCtrl',
-      resolve: {
-        school: function() { return school; }
-      }
-    });
-
-    modalInstance.result.then(function (result) {
-         console.log(result.data);
-         updateSchool(result.data);
+    SchoolModal.show(school).then(function(school) {
+      console.log('edit', school);
+      updateSchool(school);
     });
   };
 
@@ -68,7 +51,7 @@ function ($scope,  $modal,  $http,  SweetAlert) {
   };
 
   var removeSchool = function(id) {
-    $http.delete('/api/schools/' + id);
+    School.delete(id);
 
     var index = findSchoolById(id);
     if (index > -1) $scope.schools.splice(index, 1);
