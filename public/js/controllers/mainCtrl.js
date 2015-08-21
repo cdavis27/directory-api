@@ -19,7 +19,10 @@ function ($scope,  $modal,  $http,  SweetAlert) {
   $scope.openModal = function () {
     var modalInstance = $modal.open ({
       templateUrl: 'js/directives/modal.html',
-      controller: 'ModalCtrl'
+      controller: 'ModalCtrl',
+      resolve: {
+        school: function() { return undefined; }
+      }
     });
 
     modalInstance.result.then(function (result) {
@@ -29,7 +32,18 @@ function ($scope,  $modal,  $http,  SweetAlert) {
   };
 
   $scope.edit = function(school) {
+    var modalInstance = $modal.open ({
+      templateUrl: 'js/directives/modal.html',
+      controller: 'ModalCtrl',
+      resolve: {
+        school: function() { return school; }
+      }
+    });
 
+    modalInstance.result.then(function (result) {
+         console.log(result.data);
+         updateSchool(result.data);
+    });
   };
 
   $scope.delete = function(school) {
@@ -56,11 +70,22 @@ function ($scope,  $modal,  $http,  SweetAlert) {
   var removeSchool = function(id) {
     $http.delete('/api/schools/' + id);
 
+    var index = findSchoolById(id);
+    if (index > -1) $scope.schools.splice(index, 1);
+  };
+
+  var updateSchool = function(school) {
+    var index = findSchoolById(school._id);
+    if (index > -1) $scope.schools.splice(index, 1, school);
+  };
+
+  var findSchoolById = function(id) {
     for (var i=0; i<$scope.schools.length; i++) {
       if ($scope.schools[i]._id === id) {
-        $scope.schools.splice(i, 1);
+        return i;
       }
     }
+    return -1;
   };
 
 
