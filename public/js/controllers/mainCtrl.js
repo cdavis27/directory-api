@@ -6,7 +6,7 @@ function ($scope, $modal, $http) {
 
   $scope.schools = [];
 
-  $http.get('/api//schools').
+  $http.get('/api/schools').
   then(function(res) {
     $scope.schools = res.data;
     console.log(res);

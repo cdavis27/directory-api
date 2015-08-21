@@ -7,7 +7,14 @@ function ($scope, $modalInstance, $http) {
   $scope.school = undefined;
 
   $scope.createSchool = function(school) {
-  $http.post('/api/schools', school).
+  // Create a deep copy
+  var mySchool = {};
+  angular.copy(school, mySchool);
+
+  // Validation
+  mySchool.enrollment = parseInt(mySchool.enrollment);
+
+  $http.post('/api/schools', mySchool).
     then(function(res) {
       console.log('added school success');
     }, function(res) {

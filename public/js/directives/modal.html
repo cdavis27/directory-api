@@ -11,16 +11,16 @@
                     <input type="text" class="form-control" placeholder="School Name" ng-model="school.name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Street Address" ng-model="school.street">
+                    <input type="text" class="form-control" placeholder="Street Address" ng-model="school.address.street">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="City" id="city" ng-model="school.city">
+                    <input type="text" class="form-control" placeholder="City" id="city" ng-model="school.address.city">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="State" ng-model="school.state">
+                    <input type="text" class="form-control" placeholder="State" ng-model="school.address.state">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Zip Code" ng-model="school.zip">
+                    <input type="text" class="form-control" placeholder="Zip Code" ng-model="school.address.zip">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Phone" ng-model="school.phone">
@@ -30,29 +30,12 @@
                 </div>
                 <h4>Contact Info</h4>
                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Contact Name" ng-model="contacts.name">
+                    <input type="text" class="form-control" placeholder="Contact Name" ng-model="school.contacts.name">
                 </div>
                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Contact Position" ng-model="contacts.position">
+                    <input type="text" class="form-control" placeholder="Contact Position" ng-model="school.contacts.position">
                 </div>
-                <!-- <button type="submit" class="add-btn btn btn-default btn-lg center-block">+ Contact</button> -->
               <button class="my-btn btn btn-default btn-lg center-block" ng-click="createSchool(school)">ADD</button>
             </form>
         </div>
     </div>
-
-<!-- <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div> -->

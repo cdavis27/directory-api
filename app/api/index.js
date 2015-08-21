@@ -3,7 +3,6 @@ var router      = express.Router();
 
 // Model imports
 var School     = require('../models/School');
-var Contact    = require('../models/Contact');
 
 // read
 router.get('/schools', function (req, res) {
@@ -25,11 +24,7 @@ router.get('/schools/:id', function (req, res) {
 // create
 router.post('/schools', function (req, res) {
 
-    var school = new School ({
-        'name': req.body.name,
-        'address': req.body.address,
-        'phone': req.body.phone
-    });
+    var school = new School(req.body);
 
     school.save(function (err, data) {
         if (err) {
