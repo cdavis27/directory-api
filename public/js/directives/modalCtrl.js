@@ -16,12 +16,10 @@ function ($scope, $modalInstance, $http) {
 
   $http.post('/api/schools', mySchool).
     then(function(res) {
-      console.log('added school success');
+      $modalInstance.close(res);
     }, function(res) {
       console.log('added school fail');
     });
-
-    $modalInstance.close();
   };
 
   $scope.cancel = function() {

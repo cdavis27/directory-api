@@ -31,7 +31,7 @@ router.post('/schools', function (req, res) {
             res.send('create failed');
             return;
         }
-        res.send('create successful');
+        res.json(data);
     });
 });
 
