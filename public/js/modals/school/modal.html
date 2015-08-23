@@ -1,0 +1,40 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h2 class="modal-title text-center">{{ title }}</h4>
+    </div>
+    <div class="modal-body">
+        <h4>School Info</h4>
+        <form role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="School Name" ng-model="school.name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Street Address" ng-model="school.address.street">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="City" id="city" ng-model="school.address.city">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="State" ng-model="school.address.state">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Zip Code" ng-model="school.address.zip">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Phone" ng-model="school.phone">
+            </div>
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enrollment" ng-model="school.enrollment">
+            </div>
+            <h4>Contact Info</h4>
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="Contact Name" ng-model="school.contacts.name">
+            </div>
+             <div class="form-group">
+                <input type="text" class="form-control" placeholder="Contact Position" ng-model="school.contacts.position">
+            </div>
+          <button class="my-btn btn btn-default btn-lg center-block" ng-click="buttonClick(school)">{{ buttonText }}</button>
+        </form>
+    </div>
+</div>

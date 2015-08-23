@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "angular-route": "^1.4.3",
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
     "express": "^4.13.2",
     "jquery": "^2.1.4",
+    "jsonwebtoken": "^5.0.5",
     "mongoose": "^4.1.0",
     "morgan": "^1.6.1",
     "normalize.css": "^3.0.3"

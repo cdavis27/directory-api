@@ -18,6 +18,7 @@ var morgan      = require('morgan');                // Logging for dev
 var path        = require('path');                  // filesystem goodies
 
 var api         = require('./app/api');             // API routes
+var publicAPI   = require('./app/api/public');      // Public API routes
 var database    = require('./config/database');     // database configs
 
 var port        = process.env.PORT || 8080;         // If no env var set, DEV mode
@@ -39,14 +40,24 @@ app.use(morgan('dev'));                             // For request logging
 // Custom Middleware
 // ----------------------------------------------------------------------------
 
-// app.use(require('./app/middleware/basic-auth')());  // Basic auth
-
 // ----------------------------------------------------------------------------
-// Routes
+// Public Routes
 // ----------------------------------------------------------------------------
 
 app.use(express.static(path.join(__dirname, 'public')));        // for the HTML5/JS app
 app.use('/uploads', express.static(__dirname + '/uploads'));    // for files/images
+
+app.use('/api', publicAPI); 
+
+// ----------------------------------------------------------------------------
+// Authentication Middleware
+// ----------------------------------------------------------------------------
+
+app.use(require('./app/middleware/jwt-auth')());  // JWT auth
+
+// ----------------------------------------------------------------------------
+// Private Routes
+// ----------------------------------------------------------------------------
 
 app.use('/api', api);                                           // all API requests will be http://host.com/api/...
 

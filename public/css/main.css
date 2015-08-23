@@ -121,27 +121,25 @@ p.icon-text {
   left: 5px;
 }
 
-/*.form-control {
-  width: 30em;
-  height: 3em;
-  box-shadow: none;
-  margin-left: 5.2em;
-  border-radius: 0;
-}*/
-/*
-.modal-title {
-    margin-bottom: 1em;
+.clickable {
+  cursor: pointer;
 }
 
-.contact-info {
-  padding-top: .2em;
-  margin: 0;
-  width: 65%;
+.login-error {
+  background-color: rgba(255, 0, 0, 0.06);
 }
 
-.modal-content {
-  margin-top: 11em;
-}*/
+.login-error p {
+  font-size: 1.2em;
+  text-align: center;
+  color: red;
+  line-height: 2em;
+}
 
+.hidden-icon {
+  opacity: .25;
+}
 
-
+.hidden-icon:hover {
+  opacity: 1;
+}

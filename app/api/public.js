@@ -1,0 +1,90 @@
+var express     = require('express');
+var router      = express.Router();
+var jwt         = require('jsonwebtoken');
+var bcrypt      = require('bcrypt');
+
+var jwtSecret  = require('../../config/jwt').secret;
+
+// Models
+var User       = require('../models/User');
+
+router.post('/authenticate', function(req, res) {
+    User.findOne({
+        name: req.body.username
+    }, function(err, user) {
+        if (err) {
+            if (err.name === 'TokenExpiredError') {
+                res.status(401).json({
+                    success: false,
+                    message: 'Token expired.'
+                })
+                return;
+            } else if (err.name === 'JsonWebTokenError') {
+                res.status(401).json({
+                    success: false,
+                    message: err.message
+                })
+                return;
+            } else {
+                res.status(401).json({
+                    success: false,
+                    message: 'Unspecified error.'
+                })
+                return console.error(err);
+            }
+        }
+
+        if (!user) {
+            res.status(401).json({
+                success: false,
+                message: 'Authentication failed. User not found.'
+            });
+            return;
+        }
+
+        user.comparePassword(req.body.password, function(err, isMatch) {
+            if (err) {
+                return res.status(401).json({
+                    success: false,
+                    message: err
+                });
+            }
+
+            if (!isMatch) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Authentication failed. Wrong password'
+                })
+            }
+
+            // if everything is good, create a JWT!
+            var token = jwt.sign(user, jwtSecret, {
+                expiresInMinutes: 1440 // expires in 24 hours
+            });
+
+            // return the info as JSON
+            res.json({
+                success: true,
+                message: 'Enjoy your token!',
+                token: token
+            });
+        });
+    });
+});
+
+router.get('/setup', function(req, res) {
+    return res.json({ success: false });
+
+    var parker = new User({
+        name: 'rwlokc',
+        password: 'cheche',
+        admin: true
+    });
+
+    parker.save(function(err) {
+        if (err) throw err;
+        res.json({ success: true });
+    });
+});
+
+module.exports = router;
