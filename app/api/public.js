@@ -59,7 +59,9 @@ router.post('/authenticate', function(req, res) {
 
             // if everything is good, create a JWT!
             var token = jwt.sign(user.clean(), jwtSecret, {
-                expiresInMinutes: 1440 // expires in 24 hours
+                // if you're signing on from the iOS app, we don't want token
+                // to expire, so let's set 'expiresInMinutes' to 0.
+                expiresInMinutes: (req.body.ios) ? 0 : 1440 // expires in 24 hours
             });
 
             // return the info as JSON
