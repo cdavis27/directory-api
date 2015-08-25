@@ -12,7 +12,6 @@ function ($modal,   $q) {
         var modal = $modal.open({
             templateUrl: 'js/modals/school/modal.html',
             controller: 'SchoolModalCtrl',
-            backdrop: 'static',
             keyboard: true,
             windowClass: 'school-modal',
             resolve: {

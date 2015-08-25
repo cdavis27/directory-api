@@ -58,7 +58,7 @@ router.post('/authenticate', function(req, res) {
             }
 
             // if everything is good, create a JWT!
-            var token = jwt.sign(user, jwtSecret, {
+            var token = jwt.sign(user.clean(), jwtSecret, {
                 expiresInMinutes: 1440 // expires in 24 hours
             });
 
@@ -76,8 +76,8 @@ router.get('/setup', function(req, res) {
     return res.json({ success: false });
 
     var parker = new User({
-        name: 'rwlokc',
-        password: 'cheche',
+        name: 'parker',
+        password: 'hi',
         admin: true
     });
 

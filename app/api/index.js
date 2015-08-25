@@ -73,4 +73,8 @@ router.delete('/schools/:id', function (req, res) {
     });
 });
 
+router.get('/verify', function(req, res) {
+    res.json({ success: true });
+});
+
 module.exports = router;
