@@ -11,6 +11,7 @@ angular
     'ngRoute',
     'oitozero.ngSweetAlert',
     'LocalStorageModule',
+    'ngImgCrop',
     'directoryApp.controllers',
     'directoryApp.services',
     'directoryApp.modals',

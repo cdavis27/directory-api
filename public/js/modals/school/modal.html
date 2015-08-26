@@ -31,7 +31,9 @@
             <div ng-repeat="contact in school.contacts">
                 <div class="row contact-row">
                     <div class="profile-picture col-md-2">
-                        <img ng-show="!member.profile_picture" src="/assets/avatar_blank.png" class="contact-img img-circle img-responsive">
+                        <img ng-show="!contact.img" src="/assets/avatar_blank.png" ng-dblclick="picture(contact)" class="contact-img img-circle img-responsive">
+                        <img ng-show="contact.img" ng-src="{{contact.img}}" ng-dblclick="picture(contact)" class="contact-img img-circle img-responsive">
+                        <span>double click</span>
                     </div>
                     <div class="col-md-10">
                         <div class="form-group">
@@ -44,8 +46,8 @@
                 </div>
             </div>
             <div class="rearrange-buttons">
-                <button class="my-btn btn btn-default btn-lg center-block btn-two" ng-click="buttonClick(school)">{{ buttonText }}</button>
-                <button class="my-btn btn btn-default btn-one" ng-click="addContact()">Add Contact</button>
+                <button class="my-btn btn btn-lg center-block btn-two" ng-click="buttonClick(school)">{{ buttonText }}</button>
+                <button class="my-btn btn btn-one" ng-click="addContact()">Add Contact</button>
             </div>
         </form>
     </div>

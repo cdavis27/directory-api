@@ -13,7 +13,8 @@ module.exports = mongoose.model('School', mongoose.Schema({
         contacts: [{
             name: String,
             position: String,
-            phone: String
+            phone: String,
+            img: String
         }]
     })
 );

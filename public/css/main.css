@@ -152,6 +152,7 @@ p.icon-text {
 .rearrange-buttons .btn-one {
   position: relative;
   top: -75px;
+  right: -460px;
 }
 
 .rearrange-buttons .btn-two {
@@ -168,4 +169,25 @@ p.icon-text {
 .contact-row {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.contact-row span {
+  font-size: .75em;
+  color: #666;
+  font-style: italic;
+  position: relative;
+  top: 8px;
+  left: 15px;
+}
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width: 500px;
+  height: 350px;
+  margin-bottom: 20px;
+}
+
+.picture-buttons > button:last-child {
+  margin-right: 20px
 }

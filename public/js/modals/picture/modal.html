@@ -1,0 +1,37 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h2 class="modal-title text-center">Choose Picture</h4>
+    </div>
+    <div class="modal-body">
+        <div>Select an image file: <input type="file" id="fileInput" /></div>
+        <div class="cropArea">
+            <img-crop image="images.original" result-image="images.cropped"></img-crop>
+        </div>
+        <div class="picture-buttons">
+            <button class="pull-right my-btn btn" ng-click="crop(images)">Crop</button>
+            <button class="pull-right btn btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // This is hacky... but the project is abandoned and I didn't 
+    // want to make a directive
+    var handleFileSelect = function(evt) {
+      var target = evt.currentTarget;
+      var file = target.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (evt) {
+        var $scope = angular.element(target).scope();
+        $scope.$apply(function($scope) {
+          $scope.images.original = evt.target.result;
+        });
+      };
+
+      reader.readAsDataURL(file);
+    };
+    angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
+</script>

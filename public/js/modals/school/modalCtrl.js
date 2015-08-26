@@ -30,8 +30,8 @@ function ($modal,   $q) {
 }])
 
 .controller('SchoolModalCtrl',
-[        '$scope','$modalInstance','$http','currentSchool','School',
-function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
+[        '$scope','$modalInstance','$http','currentSchool','School','PictureModal',
+function ($scope,  $modalInstance,  $http,  currentSchool,  School,  PictureModal) {
 
   if (currentSchool) {
     $scope.school = currentSchool;
@@ -65,6 +65,13 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
       $scope.school.contacts.push({});
     }
   };
+
+  $scope.picture = function(contact) {
+    PictureModal.show(contact).then(function(image) {
+      console.log(image);
+      contact.img = image.cropped;
+    });
+  };
   
   // ---------------------------------------------
   // Private Methods
@@ -90,6 +97,7 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
     clean(school);
 
     School.update(school).then(function(response) {
+      console.log('school!', school)
       $modalInstance.close(school);
     }, function(err) {
       console.error('PUT\'ing school failed', err);
