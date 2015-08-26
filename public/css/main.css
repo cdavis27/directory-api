@@ -93,11 +93,24 @@ body {
   height: 30px;
   width: 500px;
   padding-bottom: 2.5em;
-  margin-bottom: .3em
+  margin-bottom: .3em;
 }
 
 .contact {
   margin-top: 10px;
+  height: 70px;
+}
+
+.contact .contact-detail {
+  line-height: 10px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-italic {
+  font-style: italic;
 }
 
 p.icon-text {
@@ -112,6 +125,8 @@ p.icon-text {
   height: 60px;
   width: 60px;
   display: inline-block;
+  position: relative;
+  top: -6px;
 }
 
 .contact-info {
@@ -162,7 +177,7 @@ p.icon-text {
 
 .profile-picture .contact-img {
   position: relative;
-  top: 10px;
+  top: 30px;
   left: 15px;
 }
 
@@ -176,7 +191,7 @@ p.icon-text {
   color: #666;
   font-style: italic;
   position: relative;
-  top: 8px;
+  top: 30px;
   left: 15px;
 }
 
