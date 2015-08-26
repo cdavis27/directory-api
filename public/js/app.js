@@ -10,6 +10,7 @@ angular
     'ui.bootstrap',
     'ngRoute',
     'oitozero.ngSweetAlert',
+    'LocalStorageModule',
     'directoryApp.controllers',
     'directoryApp.services',
     'directoryApp.modals',

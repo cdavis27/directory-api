@@ -58,8 +58,10 @@ router.post('/authenticate', function(req, res) {
             }
 
             // if everything is good, create a JWT!
-            var token = jwt.sign(user, jwtSecret, {
-                expiresInMinutes: 1440 // expires in 24 hours
+            var token = jwt.sign(user.clean(), jwtSecret, {
+                // if you're signing on from the iOS app, we don't want token
+                // to expire, so let's set 'expiresInMinutes' to 0.
+                expiresInMinutes: (req.body.ios) ? 0 : 1440 // expires in 24 hours
             });
 
             // return the info as JSON
@@ -76,8 +78,8 @@ router.get('/setup', function(req, res) {
     return res.json({ success: false });
 
     var parker = new User({
-        name: 'rwlokc',
-        password: 'cheche',
+        name: 'parker',
+        password: 'hi',
         admin: true
     });
 

@@ -10,7 +10,7 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', function(next) {
-    var user = this;
+    // var user = this;
 
     // only hash the password if it has been modified (or new)
     if (!user.isModified('password')) return next();
@@ -36,6 +36,12 @@ UserSchema.methods.comparePassword = function(candidatePassword, callback) {
         callback(null, isMatch);
     });
 }
+
+UserSchema.methods.clean = function() {
+    var user = this.toObject();
+    delete user.password;
+    return user;
+};
 
 module.exports = mongoose.model('User', UserSchema);
 
