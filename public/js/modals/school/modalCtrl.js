@@ -76,7 +76,7 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
     angular.copy(school, mySchool);
 
     // Validation
-    mySchool.enrollment = ~~parseInt(mySchool.enrollment);
+    clean(mySchool);
 
     School.create(mySchool).then(function(school) {
       $modalInstance.close(school);
@@ -86,13 +86,26 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
   };
 
   var edit = function(school) {
-    console.log(school);
+    // Validation
+    clean(school);
 
     School.update(school).then(function(response) {
       $modalInstance.close(school);
     }, function(err) {
       console.error('PUT\'ing school failed', err);
     });
+  };
+
+  var clean = function(school) {
+    // Make sure enrollment is an int
+    school.enrollment = ~~parseInt(school.enrollment);
+
+    for (var i=0; i<school.contacts.length; i++) {
+      if (!school.contacts[i].name && !school.contacts[i].position) {
+        console.log('Trimming', i)
+        school.contacts.splice(i, 1);
+      }
+    }
   };
 
 }]);
