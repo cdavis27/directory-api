@@ -23,7 +23,11 @@ function ($scope,  $http,  SweetAlert,  User,  School,  SchoolModal) {
   };
 
   $scope.edit = function(school) {
-    SchoolModal.show(school).then(function(school) {
+    // Create a deep copy
+    var mySchool = {};
+    angular.copy(school, mySchool);
+
+    SchoolModal.show(mySchool).then(function(school) {
       console.log('edit', school);
       updateSchool(school);
     });

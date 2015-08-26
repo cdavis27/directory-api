@@ -39,10 +39,15 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
     $scope.buttonText = 'UPDATE';
     $scope.title = 'Edit School';
   } else {
-    $scope.school = undefined;
+    $scope.school = { contacts: [] };
     $scope.edit = false;
     $scope.buttonText = 'ADD';
     $scope.title = 'Create New School';
+  }
+
+  if ($scope.school && !$scope.school.contacts.length) {
+    // there are no contacts, leave a placeholder
+    $scope.school.contacts.push({});
   }
 
   $scope.buttonClick = function(school) {
@@ -52,7 +57,14 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
 
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
-  }
+  };
+
+  $scope.addContact = function() {
+    var lastIndex = $scope.school.contacts.length-1;
+    if ($scope.school.contacts[lastIndex].name || $scope.school.contacts[lastIndex].position) {
+      $scope.school.contacts.push({});
+    }
+  };
   
   // ---------------------------------------------
   // Private Methods
@@ -74,8 +86,9 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
   };
 
   var edit = function(school) {
+    console.log(school);
 
-    School.update(school).then(function(school) {
+    School.update(school).then(function(response) {
       $modalInstance.close(school);
     }, function(err) {
       console.error('PUT\'ing school failed', err);
