@@ -29,11 +29,18 @@
             </div>
             <h4>Contact Info</h4>
             <div ng-repeat="contact in school.contacts">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Contact Name" ng-model="contact.name">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Contact Position" ng-model="contact.position">
+                <div class="row contact-row">
+                    <div class="profile-picture col-md-2">
+                        <img ng-show="!member.profile_picture" src="/assets/avatar_blank.png" class="contact-img img-circle img-responsive">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Contact Name" ng-model="contact.name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Contact Position" ng-model="contact.position">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="rearrange-buttons">

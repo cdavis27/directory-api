@@ -156,5 +156,16 @@ p.icon-text {
 
 .rearrange-buttons .btn-two {
   position: relative;
-  top: 50px
+  top: 50px;
+}
+
+.profile-picture .contact-img {
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+.contact-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
