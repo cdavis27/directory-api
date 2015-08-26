@@ -10,6 +10,7 @@ module.exports = mongoose.model('School', mongoose.Schema({
         },
         phone: String,
         enrollment: Number,
+        yearbook: { type: Boolean, default: false },
         contacts: [{
             name: String,
             position: String,

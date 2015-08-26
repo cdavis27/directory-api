@@ -27,6 +27,9 @@
         <span class="enrollment school-icon">
             <p class="icon-text">{{ school.enrollment }} </p>
         </span>
+        <span class="enrollment school-icon">
+            <p class="icon-text">{{ school.yearbook | humanBool }} </p>
+        </span>
         <div class="contact" ng-repeat="contact in school.contacts">
              <img ng-show="!contact.img" src="assets/monster.png" class="contact-img img-circle img-responsive">
              <img ng-show="contact.img" ng-src="{{ contact.img }}" class="contact-img img-circle img-responsive">

@@ -161,7 +161,7 @@ p.icon-text {
 
 .rearrange-buttons::after {
   content: "";
-  line-height: 75px;
+  line-height: 55px;
 }
 
 .rearrange-buttons .btn-one {
@@ -204,5 +204,16 @@ p.icon-text {
 }
 
 .picture-buttons > button:last-child {
-  margin-right: 20px
+  margin-right: 20px;
+}
+
+.btn-group > .btn.my-btn.active {
+  background-color: #01b7ad;
+  border-color: #01b7ad;
+}
+
+.yearbook-title {
+  color: #666;
+  font-weight: bold;
+  margin-right: 20px;
 }
