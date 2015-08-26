@@ -28,7 +28,8 @@
             <p class="icon-text">{{ school.enrollment }} </p>
         </span>
         <div class="contact" ng-repeat="contact in school.contacts">
-             <img src="assets/monster.png" class="contact-img img-circle img-responsive">
+             <img ng-show="!contact.img" src="assets/monster.png" class="contact-img img-circle img-responsive">
+             <img ng-show="contact.img" ng-src="{{ contact.img }}" class="contact-img img-circle img-responsive">
              <div class="contact-info">
                 <p>{{ contact.name }}</p>
                 <p>{{ contact.position }}</p>

@@ -52,8 +52,7 @@ this.$get = ['$http','LoginModal','localStorageService',
                 var token;
                 // Before showing the modal, let's make sure that it's needed
                 if (token = localStorage.get(LS_KEY)) {
-                    console.log(token);
-
+                    
                     // verify our JWT with the server
                     $http({
                         method: 'GET',

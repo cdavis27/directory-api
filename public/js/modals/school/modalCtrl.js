@@ -30,8 +30,8 @@ function ($modal,   $q) {
 }])
 
 .controller('SchoolModalCtrl',
-[        '$scope','$modalInstance','$http','currentSchool','School',
-function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
+[        '$scope','$modalInstance','$http','currentSchool','School','PictureModal',
+function ($scope,  $modalInstance,  $http,  currentSchool,  School,  PictureModal) {
 
   if (currentSchool) {
     $scope.school = currentSchool;
@@ -39,10 +39,15 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
     $scope.buttonText = 'UPDATE';
     $scope.title = 'Edit School';
   } else {
-    $scope.school = undefined;
+    $scope.school = { contacts: [] };
     $scope.edit = false;
     $scope.buttonText = 'ADD';
     $scope.title = 'Create New School';
+  }
+
+  if ($scope.school && !$scope.school.contacts.length) {
+    // there are no contacts, leave a placeholder
+    $scope.school.contacts.push({});
   }
 
   $scope.buttonClick = function(school) {
@@ -52,7 +57,21 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
 
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
-  }
+  };
+
+  $scope.addContact = function() {
+    var lastIndex = $scope.school.contacts.length-1;
+    if ($scope.school.contacts[lastIndex].name || $scope.school.contacts[lastIndex].position) {
+      $scope.school.contacts.push({});
+    }
+  };
+
+  $scope.picture = function(contact) {
+    PictureModal.show(contact).then(function(image) {
+      console.log(image);
+      contact.img = image.cropped;
+    });
+  };
   
   // ---------------------------------------------
   // Private Methods
@@ -64,7 +83,7 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
     angular.copy(school, mySchool);
 
     // Validation
-    mySchool.enrollment = ~~parseInt(mySchool.enrollment);
+    clean(mySchool);
 
     School.create(mySchool).then(function(school) {
       $modalInstance.close(school);
@@ -74,12 +93,27 @@ function ($scope,  $modalInstance,  $http,  currentSchool,  School) {
   };
 
   var edit = function(school) {
+    // Validation
+    clean(school);
 
-    School.update(school).then(function(school) {
+    School.update(school).then(function(response) {
+      console.log('school!', school)
       $modalInstance.close(school);
     }, function(err) {
       console.error('PUT\'ing school failed', err);
     });
+  };
+
+  var clean = function(school) {
+    // Make sure enrollment is an int
+    school.enrollment = ~~parseInt(school.enrollment);
+
+    for (var i=0; i<school.contacts.length; i++) {
+      if (!school.contacts[i].name && !school.contacts[i].position) {
+        console.log('Trimming', i)
+        school.contacts.splice(i, 1);
+      }
+    }
   };
 
 }]);

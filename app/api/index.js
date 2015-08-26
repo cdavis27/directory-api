@@ -4,6 +4,8 @@ var router      = express.Router();
 // Model imports
 var School     = require('../models/School');
 
+var upload     = require('../middleware/multer-upload');
+
 // read
 router.get('/schools', function (req, res) {
     School.find({}, function (err, data) {
@@ -71,6 +73,10 @@ router.delete('/schools/:id', function (req, res) {
             res.send('delete successful');
         });
     });
+});
+
+router.post('/pictures', upload.array('picture'), function(req, res) {
+    res.send('ok');
 });
 
 router.get('/verify', function(req, res) {

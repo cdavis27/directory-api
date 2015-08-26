@@ -22,7 +22,8 @@
     "angular-bootstrap": "~0.13.1",
     "angular-sweetalert": "~1.1.0",
     "angular-route": "~1.4.4",
-    "angular-local-storage": "~0.2.2"
+    "angular-local-storage": "~0.2.2",
+    "ngImgCrop": "~0.3.2"
   },
   "resolutions": {
     "angular": "~1.4.3"

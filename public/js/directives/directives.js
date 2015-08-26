@@ -17,3 +17,21 @@ angular
         }
     };
 }])
+.directive('daEnter', [function(){
+    return {
+        link: function($scope, iElm, iAttrs, controller) {
+            iElm.bind('keypress', function(e) {
+
+                // If there is an attr, eval it
+                if (iAttrs.daEnter !== 'da-enter') {
+                    $scope.$apply(function() {
+                      $scope.$eval(iAttrs.daEnter);
+                    });  
+                }
+
+                e.preventDefault();
+
+            });
+        }
+    };
+}])
