@@ -24,8 +24,15 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Phone" ng-model="school.phone">
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <input type="text" class="form-control" placeholder="Enrollment" ng-model="school.enrollment">
+            </div>
+            <div class="form-group">
+                <span class="yearbook-title">Yearbook:</span>
+                <div class="btn-group">
+                    <label class="btn my-btn" ng-model="school.yearbook" btn-radio="false">No</label>
+                    <label class="btn my-btn" ng-model="school.yearbook" btn-radio="true">Yes</label>
+                </div>
             </div>
             <h4>Contact Info</h4>
             <div ng-repeat="contact in school.contacts">
@@ -41,6 +48,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Contact Position" ng-model="contact.position">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Optional Contact" ng-model="contact.contact">
                         </div>
                     </div>
                 </div>

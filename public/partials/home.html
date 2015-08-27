@@ -5,7 +5,7 @@
 <!-- end top bar -->
 
 <div class="container">
-    <div class="school-card col-xs-12 col-lg-3 col-med-6" ng-repeat="school in schools">
+    <div class="school-card col-xs-12 col-lg-3 col-md-6" ng-repeat="school in schools">
         <ul class="icons">
             <li>
                 <span class="hidden-icon glyphicon glyphicon-pencil white clickable" ng-click="edit(school)"></span>
@@ -27,12 +27,16 @@
         <span class="enrollment school-icon">
             <p class="icon-text">{{ school.enrollment }} </p>
         </span>
+        <span class="enrollment school-icon">
+            <p class="icon-text">{{ school.yearbook | humanBool }} </p>
+        </span>
         <div class="contact" ng-repeat="contact in school.contacts">
              <img ng-show="!contact.img" src="assets/monster.png" class="contact-img img-circle img-responsive">
              <img ng-show="contact.img" ng-src="{{ contact.img }}" class="contact-img img-circle img-responsive">
              <div class="contact-info">
-                <p>{{ contact.name }}</p>
-                <p>{{ contact.position }}</p>
+                <p class="contact-detail font-bold">{{ contact.name || '&nbsp;' }}</p>
+                <p class="contact-detail font-italic">{{ contact.position || '&nbsp;' }}</p>
+                <p class="contact-detail">{{ contact.contact || '&nbsp;' }}</p>
             </div>
         </div>
     </div>

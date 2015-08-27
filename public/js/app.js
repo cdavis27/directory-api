@@ -4,6 +4,7 @@ angular.module('directoryApp.controllers', []);
 angular.module('directoryApp.modals', []);
 angular.module('directoryApp.services', []);
 angular.module('directoryApp.directives', []);
+angular.module('directoryApp.filters', []);
 
 angular
 .module('directoryApp', [
@@ -15,7 +16,8 @@ angular
     'directoryApp.controllers',
     'directoryApp.services',
     'directoryApp.modals',
-    'directoryApp.directives'
+    'directoryApp.directives',
+    'directoryApp.filters'
 ])
 .config(['$routeProvider',
 function ($routeProvider) {
