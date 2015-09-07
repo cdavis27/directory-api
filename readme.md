@@ -32,7 +32,7 @@ The following API methods are available:
 
 School JSON Structure:
 
-```json
+```javascript
 {
     name: '',
     address: {
@@ -52,7 +52,7 @@ School JSON Structure:
 
 User JSON Structure:
 
-```json
+```javascript
 {
     name: '',
     password: '',
